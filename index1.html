@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Financial Statements</title>
+  <script>
+    function updateCellValue(row, col) {
+      // Get the input value
+      const value = document.getElementById(`cell-${row}-${col}`).innerText;
+
+      // Do something with the value (you can store it, process it, etc.)
+      console.log(`Value at row ${row}, column ${col}: ${value}`);
+
+      // Check if the last cell in the last row is being edited
+      const lastRow = document.getElementById("financial-table-body").lastElementChild;
+      const lastCell = lastRow.lastElementChild;
+
+      if (row === parseInt(lastRow.querySelector("td:first-child").innerText) &&
+          col === lastRow.childElementCount - 1) {
+        // Increment the last Sl No and create a new row
+        const newSlNo = parseInt(lastRow.querySelector("td:first-child").innerText) + 1;
+        const newRow = document.createElement("tr");
+
+        // Add cells to the new row
+        newRow.innerHTML = `
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true">${newSlNo}</td>
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-2"></td>
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-3"></td>
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true"></td>
+        `;
+
+        // Append the new row to the table
+        document.getElementById("financial-table-body").appendChild(newRow);
+      }
+    }
+  </script>
+</head>
+<body>
+    
+    
+        <div class="bg-gray-100 py-8 pr-1">
+
+          <h1 class="text-center">
+            Click here for : 
+            <a href="/index.html" class="flex items-center justify-center mb-8 underline hover:text-red-600 cursor-pointer">IT Form</a>
+          </h1>
+
+            <div class="max-w-[1300px] mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+                <div class="max-w-[1300px] mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+                  <table class="w-full border-collapse border-2 border-black" id="">
+                    <thead>
+                      <div class="flex">
+                        <h1 class="p-4 w-[61.6%] border-t-2 text-center font-bold border-l-2  border-r-2 border-black">BILL DRAWN PARTICULARS for the Financial Year 2023 - 24</h1>
+                        <h1 class="p-4 w-[38.4%] border-t-2 text-sm text-center font-bold border-l-2 border-r-2 border-black">Name :	M P ARUN JEYAHAR</h1>
+                      </div>
+                    </thead>
+                    <thead>
+                        <div class="flex">
+                          <h1 class="py-2 w-[28%] border-t-2 text-center font-bold border-l-2  border-r-2 border-black">Designation: DEPUTY STATE TAX OFFICER</h1>
+                          <h1 class="py-2 w-[16.6%] border-t-2 text-sm text-center font-bold border-l-2 border-r-2 border-black">PAN :	BFOPA6244Q</h1>
+                          <h1 class="py-2 w-[17%] border-t-2 text-sm text-center font-bold border-l-2 border-r-2 border-black">Office TAN :	MRIC01323A	</h1>
+                          <h1 class="py-2 w-[38.4%] border-t-2 text-sm text-center font-bold border-l-2 border-r-2 border-black">Office :	STATE TAX OFFICE NAGERCOIL 1</h1>
+                        </div>
+                      </thead>
+                    <thead>
+                        <div class="flex">
+                          <h1 class="px-4 pt-4 border-t-2 text-center font-bold border-l-2 border-r-2 border-black w-[6%]">Month /</h1>
+                          <h1 class="p-4 border-2 text-center font-bold border-black w-[55.6%]">Name of the Company</h1>
+                          <h1 class="p-4 border-2 text-center font-bold border-black w-[38.4%]">Name of Policy</h1>
+                        </div>
+                      </thead>
+                      <thead>
+                        <div class="flex font-bold">
+                          <h1 class="px-4 border-b-2 text-center font-bold border-l-2 border-r-2 border-black w-[6%]"> Year</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[5%] ">BASIC PAY</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%]">PP</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">DA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%]">HRA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">CCA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%]">MA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">SPLA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%]">HA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">WA</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[5%]">Conve. Allow.	</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[4.8%] ">Bonus</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[4.8%]">Others</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[4.8%] ">Gross</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[4%]">CPS</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">SPF</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%]">FBF</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">NHIS</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[4%]">LIC/ PLI	</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[3.9%] ">IT + Cess	</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[5%]">HBA/<br/>Others</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[5%] ">Total Dedn.</h1>
+                          <h1 class="p-4 border-2 text-center text-xs border-black w-[4.8%]">NET</h1>
+                          
+                        </div>
+                      </thead>
+                    <tdiv id="financial-table-body text-center">
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">03/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">16720</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">63620</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6072</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">7855</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">55765</td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">04/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">16720</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">63620</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6072</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">7855</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">55765</td>
+                      </tr>
+
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">05/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">18480</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">65380</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6248</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8031</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">57349</td>
+                      </tr>
+
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">06/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">18480</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">65380</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6248</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8031</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">57349</td>
+                      </tr>
+
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">07/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">18480</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">65380</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6248</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8031</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">57349</td>
+                      </tr>
+
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">08/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">18480</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">65380</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6248</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8031</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">57349</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">09/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">18480</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">65380</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6248</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8031</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">57349</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">10/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">18480</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">65380</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6248</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8031</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">57349</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">11/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">20240</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">67140</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6424</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8207</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">58933</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">12/23</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">20240</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">67140</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6424</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8207</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">58933</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">01/24</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">45300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">20838</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2900</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">69338</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6614</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8397</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">60941</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">02/24</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">45300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">20838</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">69338</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6614</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">8397</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">60941</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">DA ARR1</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">1760</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">1760</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">176</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">176</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">1584</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">DA ARR2</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">7040</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">7040</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">704</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">704</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">6336</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true">BONUS</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">0</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">0</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">0</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 text-xs w-[6%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">0</td>
+                      </tr>
+                      <tr class="font-bold">
+                        <td class="p-2 text-sm w-[6%] border-2 border-black" contenteditable="true">Grand Total	</td>
+                        <td class="p-2 text-xs w-[5.1%] border-2 border-black" contenteditable="true" id="cell-1-2">44000</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">0</td>
+                        <td class="p-2 text-xs w-[3%] border-2 border-black" contenteditable="true" id="cell-1-3">16720</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">2600</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">300</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">0</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-2">0</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black" contenteditable="true">63620</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true" id="cell-1-2">6072</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">70</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-3">110</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true">300</td>
+                        <td class="p-2 text-xs w-[4%] border-2 border-black" contenteditable="true">1303</td>
+                        <td class="p-2 text-xs w-[3.9%] border-2 border-black" contenteditable="true" id="cell-1-2"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black" contenteditable="true" id="cell-1-3"></td>
+                        <td class="p-2 text-xs w-[5%] border-2 border-black text-blue-500" contenteditable="true" id="cell-1-3">7855</td>
+                        <td class="p-2 text-xs w-[4.8%] border-2 border-black text-blue-500" contenteditable="true">55765</td>
+                      </tr>
+                    </tdiv>
+                  </table>
+
+                  <div class="flex space-x-32">
+                    <table class="w-[45%] border-collapse border-2 mt-12 border-black" id="">
+                        <tr>
+                            <td class="p-2 font-medium w-[20%] text-center border-2 border-black" contenteditable="true">1</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">Actual house rent paid : 12 x	9100</td>
+                            <td class="p-2 font-medium w-[30%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	109200</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-medium w-[20%] text-center border-2 border-black" contenteditable="true">2</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">10 % of PAY + DA</td>
+                            <td class="p-2 font-medium w-[30%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	76588</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-medium w-[20%] text-center border-2 border-black" contenteditable="true">3</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">Rent paid over & above 10% of Pay</td>
+                            <td class="p-2 font-medium w-[30%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	32612</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-medium w-[20%] text-center border-2 border-black" contenteditable="true">4</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">HRA received by Govt. Servant	</td>
+                            <td class="p-2 font-medium w-[30%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	31800</td>
+                        </tr>
+                      </table>
+                      <table class="w-[45%] border-collapse border-2 mt-12 border-black" id="">
+                        <tr>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">Total Income	</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	801276</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">Less HRA	</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	31,800</td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-2">NET Income</td>
+                            <td class="p-2 font-medium w-[50%] border-2 text-center border-black" contenteditable="true" id="cell-1-3">₹	769476	</td>
+                        </tr>
+                      </table>
+                  </div>
+
+                  <div class="flex mx-28 space-x-[500px] my-20">
+                    <div class="mt-12 text-lg font-semibold">
+                        <h1>Signature of the Assessee</h1>	
+                    </div>
+                    <div class="mt-24 text-lg font-semibold">
+                        <h1>Signature of the Headmaster /<br/>Head of Office / Pay Drawing Officer</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        
+
+</body>
+</html>

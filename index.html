@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Financial Statements</title>
+  <script>
+    function updateCellValue(row, col) {
+      // Get the input value
+      const value = document.getElementById(`cell-${row}-${col}`).innerText;
+
+      // Do something with the value (you can store it, process it, etc.)
+      console.log(`Value at row ${row}, column ${col}: ${value}`);
+
+      // Check if the last cell in the last row is being edited
+      const lastRow = document.getElementById("financial-table-body").lastElementChild;
+      const lastCell = lastRow.lastElementChild;
+
+      if (row === parseInt(lastRow.querySelector("td:first-child").innerText) &&
+          col === lastRow.childElementCount - 1) {
+        // Increment the last Sl No and create a new row
+        const newSlNo = parseInt(lastRow.querySelector("td:first-child").innerText) + 1;
+        const newRow = document.createElement("tr");
+
+        // Add cells to the new row
+        newRow.innerHTML = `
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true">${newSlNo}</td>
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-2"></td>
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-3"></td>
+          <td class="p-4 text-lg border border-gray-300" contenteditable="true"></td>
+        `;
+
+        // Append the new row to the table
+        document.getElementById("financial-table-body").appendChild(newRow);
+      }
+    }
+  </script>
+</head>
+<body>
+
+  
+
+  <div class="bg-gray-100 p-8">
+
+    <h1 class="text-center">
+      Click here for : 
+      <a href="/index1.html" class="flex items-center justify-center mb-8 underline hover:text-red-600 cursor-pointer">Bill Drawn</a>
+    </h1>
+
+    <div class="max-w-4xl mx-auto bg-white p-1 border-2 border-black rounded shadow">
+      <header class="mb-1 text-center border-2 border-black py-2">
+        <h1 class="text-2xl font-bold">INCOME TAX CALCULATION STATEMENT</h1>
+        <p class="font-medium">(In respect of a Resident Individual - Age: below 60 years)</p>
+        <h3 class="text-xl">For the Financial Year 2023-24 / Assessment Year 2024-25</h3>
+      </header>
+  
+      <div class="mb-1 border-2 border-black p-6 grid grid-cols-3 px-16 gap-4">
+        <div class="">
+          <p class="text-start"><strong class="">Name</strong></p>
+        </div>
+        <div class="">
+          <p class="text-center text-lg font-medium">:</p>
+        </div>
+        <div class=" text-start">
+          <p class="">M P ARUN JEYAHAR</p>
+        </div>
+  
+        <div class="col-span-1">
+          <p class="text-start"><strong class="mr-2">Designation</strong></p>
+        </div>
+        <div class="col-span-1">
+          <p class="text-center text-lg font-medium">:</p>
+        </div>
+        <div class="col-span-1 text-start">
+          <p class="">DEPUTY STATE TAX OFFICER</p>
+        </div>
+  
+        <div class="col-span-1">
+          <p class="text-start"><strong class="mr-2">PAN</strong></p>
+        </div>
+        <div class="col-span-1">
+          <p class="text-center text-lg font-medium">:</p>
+        </div>
+        <div class="col-span-1 text-start">
+          <p class=""><strong>BFOPA6244Q</strong> &amp; <strong>Date of Birth:</strong> 27-07-1986</p>
+        </div>
+  
+        <div class="col-span-1">
+          <p class="text-start"><strong>School/Office Name & TAN</strong></p>
+        </div>
+        <div class="col-span-1">
+          <p class="text-center text-lg font-medium">:</p>
+        </div>
+        <div class="col-span-1 text-start">
+          <p class="">STATE TAX OFFICE NAGERCOIL 1 ( MRIC01323A )</p>
+        </div>
+      </div>
+  
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+          <thead>
+            <tr class="">
+              <th class="p-4 border border-gray-300 w-[10%]">Sl No</th>
+              <th class="p-4 border border-gray-300">Particulars</th>
+              <th class="p-4 border border-gray-300 w-[15%] text-lg text-blue-800" contenteditable="true" id="cell-1-2" oninput="updateCellValue(1, 2)">&#8377;</th>
+              <th class="p-4 border border-gray-300 w-[15%] text-lg text-blue-800" contenteditable="true" id="cell-1-3" oninput="updateCellValue(1, 3)">&#8377;</th>
+            </tr>
+          </thead>
+          <tdiv id="financial-table-body">
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">1</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-2">GROSS SALARY INCOME (including all allowances) :</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 8,01,276</td>
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false">2</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS : HRA exempted under IT Rules u/s 10(13) A <br/> a) Actual rent paid in a year : 12 x 9100 = </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">  <br/>₹ 1,09,200</td>
+              
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">b) Actual amount of HRA received</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 31,800</td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">c) Expenditure on rent in excess of 10% of salary </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 32,612</td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">d) 40% of Salary ( Pay + DA )</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 3,06,352</td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">HRA exempted : Least of the above</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 31,800</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">3</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">GROSS SALARY INCOME   ( 1 - 2 )</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 7,69,476</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false">4</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS : (a) Standard Deduction under IT Rules u/s 16 (ia)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ 50,000</td>
+              
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(b) Professional Tax u/s 16 (iii)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 2,500</td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(c) Interest on Housing Loan u/s 24(b)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(d) Conveyance Allowance u/s 10(14)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(e) Hill Allowance u/s 10(14)(ii)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(f) Others (Please specify)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 52,500</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">5</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">TAXABLE SALARY INCOME ( 3 - 4 )</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 7,16,976</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false">6</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">ADD  (a) Income from House property</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ </td>
+              
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(b) Income from Savings Bank Interest</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(c) Any other Income (FD Interest, Agricultural Income, etc)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">7</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">GROSS TOTAL INCOME </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 7,16,976</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false">8</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS Deduction under Chapter VI A <br/> (i) DED u/s 80 C</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3"></td>
+              
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">a) GPF / TPF</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">b) SPF + FBF</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 2,160</td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">c) PLI / RPLI / LIC Premium - Deduction from salary</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 15,636</td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">d) Repayment of Housing Loan (Principal)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">e) LIC / PLI Premium paid</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">f) UTI ? ULIP</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">g) Investment in NSC </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">h) Interest accured on NSC </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">i) Equity Linked Saving Scheme (ELSS)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">j) Tuition Fees</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">k) PPF / RPF</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">l) Subscription to Equity shares / Infrastructure bonds</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">m) Investment in Term Deposits (Min. 5 years) in Banks</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">n) Investment in Sukanya Samriddhi Yojana Scheme</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">o) Others (Please specify)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+             
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL AMOUNT u/s 80C</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 98,795</td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(ii) DED. u/s 80 CCC : Annuity Pension Funds | ₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(iii) DED. u/s 80 CCD(1) : contribution to CPS | ₹ 76588 </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 76,588</td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL DEDUCTION (80C + 80CCC + 80CCD) : 8 (i) to 8 (iii) <br/> U/s 80CCE : Restricted to a Max. of Rs 1,50,000</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 1,75,383</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 1,50,000</td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(iv) DED u/s 80-CCD(1B) : Voluntary Contribution to NPS / CPS </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(v) Others (Please specify)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">9</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">GROSS TAXABLE INCOME ( 7 - 8 )</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 5,66,976</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false">10</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS Deduction under Chapter VI A (Continued) <br/> (vi) DED.u/s 80 D: NHIS: <span class="border border-black p-1">3,600</span> Medl.Ins.premium <span class="border border-black p-1">19,364</span> </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ 22,964</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,964</td>
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(vii) DED u/s 80 DD : Maintenance / Treatment of Dependant </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(viii) DED u/s 80 DDB : Medical Treatment of Chronic Illness </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(ix) DED u/s 80 E : Repayment of Interest on Educational Loan</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(x) DED u/s 80 EE / 80 EEA : Interest on Specific Home Loans</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xi) DED u/s 80 G : CMPRF : Donations :</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xii) DED u/s 80TTA : Interest from Savings Accounts of Banks/PO</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xiii) DED u/s 80 U : Permanent physical disability (Self)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xiv) Others (Please specify)</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL DEDUCTIONS 10 (vi) to 10 (xiv) above</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,964</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">11</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">NET TAXABLE INCOME (Rounded off to nearest ten Rupess) u/s 288</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">₹ 5,44,012</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 5,44,010</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false">12</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">TAX ON TOTAL INCOME : <br/> a) Upto ₹ 2,50,000 Nil Tax on ₹ 2,50,000</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ </td>
+              
+            </tr>
+            
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">b) ₹ 2,50,001 to ₹ 5,00,000 @5% on ₹ 2,50,000 </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 12,500</td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">c) ₹ 5,00,001 to ₹ 10,00,000 @20% on ₹ 44,010</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 8,802</td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">d) Exceeding ₹ 10,00,000 @30% on ₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TAX PAYABLE </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 21,302</td>
+              
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">ADD : Surcharge on Income Tax : # on ₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">ADD : Health and Education CESS @ 4% on ADD : Surcharge on Income Tax : # on ₹ 21,302</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL TAX PAYABLE</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,154</td>
+            </tr>
+  
+            <tr>
+              
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">LESS : TAX RELIEF u/s 89</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 0</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TAX PAYABLE (Rounded off to nearest 10 Rupees) u/s 21,298 + 852</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,150</td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">13</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">Tax already deducted / paid : ₹ </td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
+            </tr>
+  
+            <tr>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="false">14</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">NET TAX Payable / Refundable 21,298 + 852</td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
+              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,150</td>
+            </tr>
+            
+          </tdiv>
+        </table>
+  </div>
+
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-8 border-2 border-black rounded shadow-md">
+      <h1 class="text-3xl font-bold mb-6 border-b-2 pb-2 mx-[300px] text-center">Certificate</h1>
+  
+      <div class="mb-4 text-xl">
+          <p class="mb-6"><span class="font-bold mr-2 text-lg">1:</span> Certified that I am occupying a rental house and paying monthly rent of <span class="font-bold ml-8 border-b-2 border-black">₹	9,100</span></p>
+          <p class="mb-6"><span class="font-bold mr-2 text-lg">2:</span> Certified that I pay p.a. a sum of ₹	____________	towards LIC / PLI Premium and the <br/> <span class="ml-8">policies are kept alive.</span></p>
+          <p class="mb-6"><span class="font-bold mr-2 text-lg">3:</span> Certified that the details furnished are true to the best of my knowledge and that the <span class="ml-8">rebates claimed in the statement are genuine.</span></p>
+      </div>
+  
+      <p class="text-start ml-12 mb-8 text-lg font-bold">/ COUNTER SIGNED /</p>
+  
+      <div class="flex gap-[270px] mx-8">
+        <div class="mt-8">
+          <p class="text-start text-lg font-bold">Head of Office (with seal)</p>
+        </div>
+  
+        <div class="mt-2">
+          <p class="text-end text-lg font-medium italic">Signature of the Govt. Servant</p>
+          <p class="text-center text-lg font-bold mt-1">[ M P ARUN JEYAHAR ]</p>
+          <p class="text-center text-md font-sm mt-1">DEPUTY STATE TAX OFFICER</p>
+          <p class="text-center text-md font-sm mt-1">STATE TAX OFFICE NAGERCOIL 1</p>
+        </div>
+      </div>
+  </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+        <h1 class="text-center font-bold text-xl mb-4">1. PARTICULARS OF L.I.C. / P.L.I. PREMIUM PAID</h1>
+        <thead>
+          <tr class="">
+            <th class="p-4 border border-black w-[15%]">Policy No.</th>
+            <th class="p-4 border border-black">Name of the Company	</th>
+            <th class="p-4 border border-black">Name of Policy	</th>
+            <th class="p-4 border border-black w-[12%]" contenteditable="false" id="cell-1-2" oninput="updateCellValue(1, 2)">Amount Insured	</th>
+            <th class="p-4 border border-black w-[12%]" contenteditable="false" id="cell-1-3" oninput="updateCellValue(1, 3)">Premium paid p.a.	</th>
+          </tr>
+        </thead>
+        <tdiv id="financial-table-body text-center">
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true">308777415</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2">LIC</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">JEEVAN LABH(PLAN 836)</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ 1500000</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          <tr>
+            <td class="p-2" contenteditable="false"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="false" id="cell-1-3">TOTAL</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+        </tdiv>
+      </table>
+    </div>
+  </div>
+  
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+        <h1 class="text-center font-bold text-xl mb-4">2. PARTICULARS OF UNIT LINKED INSURANCE POLICIES</h1>
+        <thead>
+          <tr class="">
+            <th class="p-4 border border-black w-[15%]">Policy No.</th>
+            <th class="p-4 border border-black">Name of the Company	</th>
+            <th class="p-4 border border-black">Name of Policy	</th>
+            <th class="p-4 border border-black w-[12%]" contenteditable="false" id="cell-1-2" oninput="updateCellValue(1, 2)">Amount Insured	</th>
+            <th class="p-4 border border-black w-[12%]" contenteditable="false" id="cell-1-3" oninput="updateCellValue(1, 3)">Premium paid p.a.	</th>
+          </tr>
+        </thead>
+        <tdiv id="financial-table-body text-center">
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2" contenteditable="false"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="false" id="cell-1-3">TOTAL</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+        </tdiv>
+      </table>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+        <h1 class="text-center font-bold text-xl mb-4">3. PARTICULARS OF National Savings Certificates</h1>
+        <thead>
+          <tr class="">
+            <th class="p-4 border border-black">Name of Post Office</th>
+            <th class="p-4 border border-black">N. S. C. Number<br/>(Issue No. in brackets)</th>
+            <th class="p-4 border border-black">Date of Purchase<br/>of the N. S. C.</th>
+            <th class="p-4 border border-black" contenteditable="false" id="cell-1-2" oninput="updateCellValue(1, 2)">Amount </th>
+          </tr>
+        </thead>
+        <tdiv id="financial-table-body text-center">
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2" contenteditable="false"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="false" id="cell-1-3">TOTAL</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+        </tdiv>
+      </table>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+        <h1 class="text-center font-bold text-xl mb-4">4. PARTICULARS OF INTEREST ACCURED ON N.S.C.</h1>
+        <thead>
+          <tr class="">
+            <th class="p-4 border border-black">N. S. C. Number and <br/>Name of Post Office</th>
+            <th class="p-4 border border-black">Date of Purchase<br/>of the N. S. C.</th>
+            <th class="p-4 border border-black">Rate of Interest (%)</th>
+            <th class="p-4 border border-black" contenteditable="false" id="cell-1-2" oninput="updateCellValue(1, 2)">Amount </th>
+          </tr>
+        </thead>
+        <tdiv id="financial-table-body text-center">
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2" contenteditable="false"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="false" id="cell-1-3">TOTAL</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true">₹ </td>
+          </tr>
+        </tdiv>
+      </table>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+        <h1 class="text-center font-bold text-xl mb-4">5. Particulars of Investments made in Equity Linked Savings Scheme of Mutual Funds</h1>
+        <thead>
+          <tr class="">
+            <th class="p-4 border border-black">Folio Number</th>
+            <th class="p-4 border border-black">Fund Name</th>
+            <th class="p-4 border border-black">Date of Investment</th>
+            <th class="p-4 border border-black">Lock in period</th>
+            <th class="p-4 border border-black">Other Particulars</th>
+            <th class="p-4 border border-black" contenteditable="false" id="cell-1-2" oninput="updateCellValue(1, 2)">Amount Paid</th>
+          </tr>
+        </thead>
+        <tdiv id="financial-table-body text-center">
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true">39588097	</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2">QUANT ELSS TAX SAVER	</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2">3 YRS	</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ 20,999</td>
+          </tr>
+          
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2" contenteditable="false"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="false" id="cell-1-3">TOTAL</td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="true">₹ 20,999</td>
+          </tr>
+        </tdiv>
+      </table>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
+    <div class="max-w-4xl mx-auto bg-white p-4 border-2 border-black rounded shadow-md">
+      <table class="w-full border-collapse border-2 border-black" id="financial-table">
+        <h1 class="text-center font-bold text-xl mb-4">6. Particulars of Tuition Fees Paid in FY 2023-24 (Maximum TWO Children)</h1>
+        <thead>
+          <tr class="">
+            <th class="p-4 border border-black">Name of the Child	</th>
+            <th class="p-4 border border-black">Class /<br/>Course</th>
+            <th class="p-4 border border-black">Name of the School / College</th>
+            <th class="p-4 border border-black" contenteditable="false" id="cell-1-2" oninput="updateCellValue(1, 2)">Tuition Fees Paid</th>
+          </tr>
+        </thead>
+        <tdiv id="financial-table-body text-center">
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true">DHEERA JEYAHAR	</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2">II	</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">ADARSH KENDRYA VIDYALAYA	</td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ 36,000</td>
+          </tr>
+
+          <tr>
+            <td class="p-2 text-lg border border-black" contenteditable="true"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3"></td>
+            <td class="p-2 text-lg border border-black" contenteditable="true" id="cell-1-3">₹ </td>
+          </tr>
+          
+          <tr>
+            <td class="p-2" contenteditable="false"></td>
+            <td class="p-2" contenteditable="false" id="cell-1-2"></td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="false" id="cell-1-3">TOTAL</td>
+            <td class="p-2 text-lg border border-black font-bold" contenteditable="true">₹ 36,000</td>
+          </tr>
+        </tdiv>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>
