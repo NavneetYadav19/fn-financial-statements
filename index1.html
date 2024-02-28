@@ -8,23 +8,23 @@
   <title>Financial Statements</title>
   <script>
     function updateCellValue(row, col) {
-      // Get the input value
+      
       const value = document.getElementById(`cell-${row}-${col}`).innerText;
 
-      // Do something with the value (you can store it, process it, etc.)
+      
       console.log(`Value at row ${row}, column ${col}: ${value}`);
 
-      // Check if the last cell in the last row is being edited
+      
       const lastRow = document.getElementById("financial-table-body").lastElementChild;
       const lastCell = lastRow.lastElementChild;
 
       if (row === parseInt(lastRow.querySelector("td:first-child").innerText) &&
           col === lastRow.childElementCount - 1) {
-        // Increment the last Sl No and create a new row
+        
         const newSlNo = parseInt(lastRow.querySelector("td:first-child").innerText) + 1;
         const newRow = document.createElement("tr");
 
-        // Add cells to the new row
+        
         newRow.innerHTML = `
           <td class="p-4 text-lg border border-gray-300" contenteditable="true">${newSlNo}</td>
           <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-2"></td>
@@ -32,7 +32,7 @@
           <td class="p-4 text-lg border border-gray-300" contenteditable="true"></td>
         `;
 
-        // Append the new row to the table
+        
         document.getElementById("financial-table-body").appendChild(newRow);
       }
     }
