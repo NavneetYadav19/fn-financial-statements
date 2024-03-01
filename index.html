@@ -5,38 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>Financial Statements</title>
-  <script>
-    function updateCellValue(row, col) {
-      
-      const value = document.getElementById(`cell-${row}-${col}`).innerText;
-
-     
-      console.log(`Value at row ${row}, column ${col}: ${value}`);
-
-      
-      const lastRow = document.getElementById("financial-table-body").lastElementChild;
-      const lastCell = lastRow.lastElementChild;
-
-      if (row === parseInt(lastRow.querySelector("td:first-child").innerText) &&
-          col === lastRow.childElementCount - 1) {
-        
-        const newSlNo = parseInt(lastRow.querySelector("td:first-child").innerText) + 1;
-        const newRow = document.createElement("tr");
-
-        
-        newRow.innerHTML = `
-          <td class="p-4 text-lg border border-gray-300" contenteditable="true">${newSlNo}</td>
-          <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-2"></td>
-          <td class="p-4 text-lg border border-gray-300" contenteditable="true" id="cell-${newSlNo}-3"></td>
-          <td class="p-4 text-lg border border-gray-300" contenteditable="true"></td>
-        `;
-
-        
-        document.getElementById("financial-table-body").appendChild(newRow);
-      }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-+qRHoLfLjpn0BsU9Z7g2zDobtfd7v0IuNiqFNpFiq8byDm6JhXgDOA1aofRK/Pex+fo7ezXXnWTgYOXLMpY9XQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .table1 {
+        border-collapse: collapse;
+        margin: 20px;
     }
-  </script>
+
+    
+    .th1, .td1 {
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+  <title>Financial Statements</title>
 </head>
 <body>
 
@@ -98,509 +80,372 @@
         </div>
       </div>
   
-      <table class="w-full border-collapse border-2 border-black" id="financial-table">
-          <thead>
-            <tr class="">
-              <th class="p-4 border border-gray-300 w-[10%]">Sl No</th>
-              <th class="p-4 border border-gray-300">Particulars</th>
-              <th class="p-4 border border-gray-300 w-[15%] text-lg text-blue-800" contenteditable="true" id="cell-1-2" oninput="updateCellValue(1, 2)">&#8377;</th>
-              <th class="p-4 border border-gray-300 w-[15%] text-lg text-blue-800" contenteditable="true" id="cell-1-3" oninput="updateCellValue(1, 3)">&#8377;</th>
-            </tr>
-          </thead>
-          <tdiv id="financial-table-body">
+      <table id="financialTable" class="table1 border-2 border-black m-0 w-full">
+        <thead>
             <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">1</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-2">GROSS SALARY INCOME (including all allowances) :</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 8,01,276</td>
+                <th class="th1 w-[20%] border-2 border-black">SL</th>
+                <th class="th1 w-[50%] border-2 border-black">Particulars</th>
+                <th class="th1 w-[15%] border-2 border-black">DR ₹</th>
+                <th class="th1 w-[15%] border-2 border-black">CR ₹</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+          <tr>
+            <td class="td1 border-2 border-black">1</td>
+            <td class="td1 border-l-2 border-black">GROSS SALARY INCOME (including all allowances) :	</td>
+            <td class="td1 border-l-2 border-black" oninput="updateCR_SL1(this)" contenteditable="true"></td>
+            <td class="td1 border-2 border-black" id="totalDR_SL1" contenteditable="false">801276	</td>
+          </tr>
+        
+          <tr>
+            <td class="td1 border-2 border-black">2</td>
+            <td class="td1 border-2 border-black">LESS :	HRA exempted under IT Rules u/s 10(13) A<br/>a)	Actual rent paid in a year : 12 x	9100 =	</td>
+            <td contenteditable="true" class="crAmount td1 border-2 border-black" oninput="calculateTotalCR()">109200</td>
+          </tr>
+          <tr>
+            <td class="td1 border-2 border-black"></td>
+            <td class="td1 border-2 border-black">b)	Actual amount of HRA received</td>
+            <td contenteditable="true" class="crAmount td1 border-2 border-black" oninput="calculateTotalCR()">31800</td>
+          </tr>
+          <tr>
+            <td class="td1 border-2 border-black"></td>
+            <td class="td1 border-2 border-black">c)	Expenditure on rent in excess of 10% of Salary</td>
+            <td contenteditable="true" class="crAmount td1 border-2 border-black" oninput="calculateTotalCR()">32162</td>
+          </tr>
+          <tr>
+            <td class="td1 border-2 border-black"></td>
+            <td class="td1 border-2 border-black">d)	40	% of Salary ( Pay + DA)	</td>
+            <td contenteditable="true" class="crAmount td1 border-2 border-black" oninput="calculateTotalCR()">306352</td>
+          </tr>
+          <tr>
+            <td class="td1 border-2 border-black"></td>
+            <td class="td1 border-2 border-black">HRA exempted : Least of the above	</td>
+            <td class="td1 border-2 border-black"></td>
+            <td class="td1 border-2 border-black" id="totalCR">31800</td>
+          </tr>
+            <tr>
+              <td class="td1 border-2 border-black">3</td>
+              <td class="td1 border-l-2 border-black">GROSS SALARY INCOME (1 - 2) 	</td>
+              <td class="td1 border-l-2 border-black" oninput="updateCR_SL2(this)" contenteditable="true"></td>
+              <td class="td1 border-2 border-black" id="totalDR_SL2" contenteditable="false">769476</td>
             </tr>
             
             <tr>
-              <td class="p-2 text-lg " contenteditable="false">2</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS : HRA exempted under IT Rules u/s 10(13) A <br/> a) Actual rent paid in a year : 12 x 9100 = </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">  <br/>₹ 1,09,200</td>
-              
+              <td class="td1 border-2 border-black">4</td>
+              <td class="td1 border-2 border-black">LESS :	(a) Standard Deduction under IT Rules u/s 16 (ia)</td>
+              <td contenteditable="true" class="crAmount2 td1 border-2 border-black" oninput="calculateTotalCR2()">50000</td>
             </tr>
-            
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">b) Actual amount of HRA received</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 31,800</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(b) Professional Tax u/s 16 (iii)</td>
+              <td contenteditable="true" class="crAmount2 td1 border-2 border-black" oninput="calculateTotalCR2()">2500</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">c) Expenditure on rent in excess of 10% of salary </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 32,612</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(c) Interest on Housing Loan u/s 24(b)</td>
+              <td contenteditable="true" class="crAmount2 td1 border-2 border-black" oninput="calculateTotalCR2()"><i class="fas fa-rupee-sign"></i>0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">d) 40% of Salary ( Pay + DA )</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 3,06,352</td>
-             
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(d) Conveyance Allowance u/s 10(14)	</td>
+              <td contenteditable="true" class="crAmount2 td1 border-2 border-black" oninput="calculateTotalCR2()"><i class="fas fa-rupee-sign"></i>0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">HRA exempted : Least of the above</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 31,800</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(e) Hill Allowance u/s 10(14)(ii)	</td>
+              <td contenteditable="true" class="crAmount2 td1 border-2 border-black" oninput="calculateTotalCR2()">0</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">3</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">GROSS SALARY INCOME   ( 1 - 2 )</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 7,69,476</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(f)	Others (Please specify)</td>
+              <td contenteditable="true" class="crAmount2 td1 border-2 border-black" oninput="calculateTotalCR2()">0</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false">4</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS : (a) Standard Deduction under IT Rules u/s 16 (ia)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ 50,000</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">TOTAL</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black" id="totalCR2">52500</td>
             </tr>
-            
+
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(b) Professional Tax u/s 16 (iii)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 2,500</td>
-              
+              <td class="td1 border-2 border-black">5</td>
+              <td class="td1 border-l-2 border-black">TAXABLE SALARY INCOME ( 3 - 4 )</td>
+              <td class="td1 border-l-2 border-black" oninput="updateCR_SL2(this)" contenteditable="true"></td>
+              <td class="td1 border-2 border-black" id="totalDR_SL2" contenteditable="false">716976</td>
             </tr>
-  
+
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(c) Interest on Housing Loan u/s 24(b)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black">6</td>
+              <td class="td1 border-2 border-black">ADD	(a) Income from House property</td>
+              <td contenteditable="true" class="crAmount3 td1 border-2 border-black" oninput="calculateTotalCR3()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(d) Conveyance Allowance u/s 10(14)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-             
+              <td class="td1 border-l-2 border-black"></td>
+              <td class="td1 border-2 border-black">(b) Income from Savings Bank Interest</td>
+              <td contenteditable="true" class="crAmount3 td1 border-2 border-black" oninput="calculateTotalCR3()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(e) Hill Allowance u/s 10(14)(ii)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-l-2 border-black"></td>
+              <td class="td1 border-2 border-black">(c) Any other Income (FD Interest, Agricultural Income, etc)</td>
+              <td contenteditable="true" class="crAmount3 td1 border-2 border-black" oninput="calculateTotalCR3()"><i class="fas fa-rupee-sign"></i>0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(f) Others (Please specify)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-             
+              <td class="td1 border-2 border-black">7</td>
+              <td class="td1 border-2 border-black">GROSS TOTAL INCOME</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black" id="totalCR2">716976</td>
             </tr>
-  
+
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 52,500</td>
+              <td class="td1 border-2 border-black">8</td>
+              <td class="td1 border-2 border-black">LESS Deduction under Chapter VI A	<br/>(i) DED u/s 80 C</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"></td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">5</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">TAXABLE SALARY INCOME ( 3 - 4 )</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 7,16,976</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">a)	GPF / TPF</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false">6</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">ADD  (a) Income from House property</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">b)	SPF + FBF</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"><i class="fas fa-rupee-sign"></i>1260</td>
             </tr>
-            
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(b) Income from Savings Bank Interest</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">c)	PLI / RPLI / LIC Premium - Deducted from salary</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"><i class="fas fa-rupee-sign"></i>15636</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(c) Any other Income (FD Interest, Agricultural Income, etc)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">d)	Repayment of Housing Loan (Principal)</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">7</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">GROSS TOTAL INCOME </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 7,16,976</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">e)	LIC / PLI Premium paid</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false">8</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS Deduction under Chapter VI A <br/> (i) DED u/s 80 C</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3"></td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">f)	UTI / ULIP</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-            
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">a) GPF / TPF</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">g)	Investment in NSC</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">b) SPF + FBF</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 2,160</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">h)	Interst accured on NSC</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">c) PLI / RPLI / LIC Premium - Deduction from salary</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 15,636</td>
-             
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">i)	Equity Linked Saving Scheme (ELSS)</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"><i class="fas fa-rupee-sign"></i>20999</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">d) Repayment of Housing Loan (Principal)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">j)	Tuition Fees</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"><i class="fas fa-rupee-sign"></i>36000</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">e) LIC / PLI Premium paid</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">k)	PPF / RPF</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">f) UTI ? ULIP</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">l)	Subscription to Equity shares / Infrastructure bonds</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">g) Investment in NSC </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-             
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">m)	Investment in Term Deposits (Min. 5 years) in Banks</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">h) Interest accured on NSC </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">n)	Investment in Sukanya Samriddhi Yojana Scheme</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">24000</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">i) Equity Linked Saving Scheme (ELSS)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">o)	Others (Please specify)</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">j) Tuition Fees</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">TOTAL AMOUNT u/s 80C</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"><i class="fas fa-rupee-sign"></i>98795</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">k) PPF / RPF</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-             
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(ii) DED. u/s 80 CCC : Annuity Pension Funds</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"><i class="fas fa-rupee-sign"></i>0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">l) Subscription to Equity shares / Infrastructure bonds</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(iii) DED. u/s 80 CCD(1) :</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">76588</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">m) Investment in Term Deposits (Min. 5 years) in Banks</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">TOTAL DEDUCTION (80C + 80CCC + 80CCD) : 8 (i) to 8 (iii)<br/>U/s 80CCE : Restricted to a Max. of ₨1,50,000	</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()">175383</td>
+              <td class="td1 border-y-2 border-black">150000</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">n) Investment in Sukanya Samriddhi Yojana Scheme</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(iv) DED u/s 80-CCD(1B): Voluntary Contribution to NPS / CPS</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">o) Others (Please specify)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-             
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(v)	Others (Please specify)</td>
+              <td contenteditable="true" class="crAmount4 td1 border-2 border-black" oninput="calculateTotalCR4()"></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL AMOUNT u/s 80C</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 98,795</td>
-              
+              <td class="td1 border-2 border-black">9</td>
+              <td class="td1 border-2 border-black">GROSS TAXABLE INCOME</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black" id="totalCR4">566976</td>
             </tr>
-  
+
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(ii) DED. u/s 80 CCC : Annuity Pension Funds | ₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black">10</td>
+              <td class="td1 border-2 border-black">LESS Deduction under Chapter VI A (Continued)<br/>(vi) DED.u/s 80 D: NHIS: <span class="border border-black p-1">3600</span>	Medl.Ins.premium	<span class="border border-black p-1">19364</span></td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">22964</td>
+              <td class="td1 border-2 border-black">22964</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(iii) DED. u/s 80 CCD(1) : contribution to CPS | ₹ 76588 </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 76,588</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(vii) DED u/s 80 DD : Maintenance / Treatment of Dependant</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL DEDUCTION (80C + 80CCC + 80CCD) : 8 (i) to 8 (iii) <br/> U/s 80CCE : Restricted to a Max. of Rs 1,50,000</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 1,75,383</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 1,50,000</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(viii) DED u/s 80 DDB : Medical Treatment of Chronic Illness</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"><i class="fas fa-rupee-sign"></i></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(iv) DED u/s 80-CCD(1B) : Voluntary Contribution to NPS / CPS </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(ix) DED u/s 80 E : Repayment of Interest on Educational Loan</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"><i class="fas fa-rupee-sign"></i></td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(v) Others (Please specify)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(x) DED u/s 80 EE / 80 EEA : Interest on Specific Home Loans</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">9</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">GROSS TAXABLE INCOME ( 7 - 8 )</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 5,66,976</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(xi) DED u/s 80 G : CMPRF</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false">10</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">LESS Deduction under Chapter VI A (Continued) <br/> (vi) DED.u/s 80 D: NHIS: <span class="border border-black p-1">3,600</span> Medl.Ins.premium <span class="border border-black p-1">19,364</span> </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ 22,964</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,964</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(xii) DED u/s 80TTA: Interest from Savings Accounts of Banks/PO</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-            
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(vii) DED u/s 80 DD : Maintenance / Treatment of Dependant </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(xiii) DED u/s 80 U : Permanent physical disability (Self)</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(viii) DED u/s 80 DDB : Medical Treatment of Chronic Illness </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">(xiv)	Others (Please specify)</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(ix) DED u/s 80 E : Repayment of Interest on Educational Loan</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">TOTAL DEDUCTIONS 10 (vi) to 10 (xiv) above</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black" id="totalCR5">22964</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(x) DED u/s 80 EE / 80 EEA : Interest on Specific Home Loans</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black">11</td>
+              <td class="td1 border-2 border-black">NET TAXABLE INCOME (Rounded off to nearest ten Rupees) u/s 288A</td>
+              <td class="td1 border-2 border-black">544012</td>
+              <td class="td1 border-2 border-black" id="totalCR2">544010</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xi) DED u/s 80 G : CMPRF : Donations :</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black">12</td>
+              <td class="td1 border-2 border-black">TAX ON TOTAL INCOME :<br/>a)	Upto ₹	2,50,000	Nil Tax on ₹	2,50,000</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">0</td>
+              <td class="td1 border-black"></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xii) DED u/s 80TTA : Interest from Savings Accounts of Banks/PO</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">b)	₹	2,50,001	to Rs .	₹	5,00,000	@ 5% on	₹	2,50,00</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">12500</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xiii) DED u/s 80 U : Permanent physical disability (Self)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">LESS : Tax Rebate U/s 87A<br/>ONLY where the total income exceeds ₹ 2,50,000 but does not exceed ₨ 5,00,00</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"><i class="fas fa-rupee-sign"></i></td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">(xiv) Others (Please specify)</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">c)	₹	5,00,001	to Rs .	₹	10,00,000	@ 20% on	₹	44,010</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"><i class="fas fa-rupee-sign"></i>8802</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL DEDUCTIONS 10 (vi) to 10 (xiv) above</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,964</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">d)	Exceeding Rs.	₹	10,00,000	@ 30% on	₹	</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()"></td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">11</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">NET TAXABLE INCOME (Rounded off to nearest ten Rupess) u/s 288</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">₹ 5,44,012</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 5,44,010</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">TAX PAYABLE</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">21302</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false">12</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-2">TAX ON TOTAL INCOME : <br/> a) Upto ₹ 2,50,000 Nil Tax on ₹ 2,50,000</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">ADD : Surcharge on Income Tax : @	0%	on	₹	</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">0</td>
             </tr>
-            
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">b) ₹ 2,50,001 to ₹ 5,00,000 @5% on ₹ 2,50,000 </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 12,500</td>
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-2 border-black">ADD : Health and Education CESS @ 4% on	₹	21,302</td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">852</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">c) ₹ 5,00,001 to ₹ 10,00,000 @20% on ₹ 44,010</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 8,802</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-b-2 border-black">TOTAL TAX PAYABLE</td>
+              <td class="td1 border-y-2 border-black"></td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">22154</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">d) Exceeding ₹ 10,00,000 @30% on ₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-b-2 border-black">LESS : TAX RELIEF u/s 89</td>
+              <td class="td1 border-y-2 border-black"></td>
+              <td contenteditable="true" class="crAmount5 td1 border-2 border-black" oninput="calculateTotalCR5()">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TAX PAYABLE </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 21,302</td>
-              
+              <td class="td1 border-2 border-black"></td>
+              <td class="td1 border-b-2 border-black">TAX PAYABLE	(Rounded off to nearest 10 Rupees) u/s 288B	21,298	+	852</td>
+              <td class="td1 border-y-2 border-black"></td>
+              <td class="td1 border-2 border-black" id="totalCR5">22150	</td>
             </tr>
-  
             <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">ADD : Surcharge on Income Tax : # on ₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black">13</td>
+              <td class="td1 border-b-2 border-l-2 border-black">Tax already deducted / paid :</td>
+              <td class="td1 border-y-2 border-black"></td>
+              <td class="td1 border-2 border-black" id="totalCR2">0</td>
             </tr>
-  
             <tr>
-              
-              <td class="p-2 text-lg" contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">ADD : Health and Education CESS @ 4% on ADD : Surcharge on Income Tax : # on ₹ 21,302</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ </td>
-              
+              <td class="td1 border-2 border-black">14</td>
+              <td class="td1 border-l-2 border-black">NET TAX Payable / Refundable	21,298	+	852</td>
+              <td class="td1 "></td>
+              <td class="td1 border-x-2 border-black" id="totalCR2">22150</td>
             </tr>
-  
-            <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TOTAL TAX PAYABLE</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,154</td>
-            </tr>
-  
-            <tr>
-              
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">LESS : TAX RELIEF u/s 89</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 0</td>
-            </tr>
-  
-            <tr>
-              <td class="p-2 text-lg " contenteditable="false" id="cell-2-2"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-2-3">TAX PAYABLE (Rounded off to nearest 10 Rupees) u/s 21,298 + 852</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,150</td>
-            </tr>
-  
-            <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">13</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">Tax already deducted / paid : ₹ </td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true"></td>
-            </tr>
-  
-            <tr>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="false">14</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3">NET TAX Payable / Refundable 21,298 + 852</td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true" id="cell-1-3"></td>
-              <td class="p-2 text-lg border border-gray-300" contenteditable="true">₹ 22,150</td>
-            </tr>
-            
-          </tdiv>
-        </table>
+        </tbody>
+    </table>
   </div>
 
   <div class="max-w-4xl mx-auto bg-white p-1 my-3 border-2 border-black rounded shadow-md">
@@ -917,6 +762,10 @@
       </table>
     </div>
   </div>
+
+
+  <script src="index.js"></script>
+
 
 </body>
 </html>
